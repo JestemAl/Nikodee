@@ -1,12 +1,24 @@
 import * as THREE from 'three'
-import Sizes from "./Utils/sizes"
-import Time from "./Utils/Time"
+import Sizes from "./Utils/Sizes.js"
+import Time from "./Utils/Time.js"
 import Camera from './Camera.js'
+import Renderer from './Renderer.js'
+import World from './World/World.js'
+
+let instance = null
 
 export default class Experience
 {
     constructor(canvas)
     {
+        // Enable access to experience from other classes (camera)
+        // return arleady instanciated experience instead creating a new one 
+        if(instance)
+        {
+            return instance
+        }
+        instance = this
+        
         // Global access
         window.experience = this
 
@@ -18,6 +30,8 @@ export default class Experience
         this.time = new Time()
         this.scene = new THREE.Scene()
         this.camera = new Camera()
+        this.renderer = new Renderer()
+        this.world = new World()
 
         // Sizes and resize event
         this.sizes.on('resize', () => 
@@ -32,13 +46,17 @@ export default class Experience
         })
     }
 
+    // metod for propagating resize to every children class (better than doing "this.sizes.on('resize', () => ..." in every class)
     resize()
     {
-        // console.log('resizing');
+        // on resize launching resize function from camera class
+        this.camera.resize()
+        this.renderer.resize()
     }
 
     update()
     {
-        // console.log('update');
+        this.camera.update()
+        this.renderer.update()
     }
 }
