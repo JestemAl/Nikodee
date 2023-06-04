@@ -29,3 +29,19 @@ body
     top: 0;
     z-index:40;
       }
+     
+      :root {
+        --shadow: #363636;
+        --scrollbarBG: #686868;
+      }
+      ::-webkit-scrollbar {
+        width: 16px;
+      }
+      ::-webkit-scrollbar-track {
+        background: var(--scrollbarBG);
+      }
+      ::-webkit-scrollbar-thumb {
+        border-bottom: 100vh solid var(--shadow);
+      }
+
+      
