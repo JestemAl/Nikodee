@@ -167,50 +167,47 @@
     </section>
 
 
-    <section class="flex flex-row justify-center items-center mt-60 ">
-       
-        <div class="flex  jusitfy-center items-center w-1/2 md:w-3/4 mt-2">
-            <div class="flex flex-col w-full">
-                <div class="text-[#FCB500] text-center">Kontakt</div>
-                <div class="flex jusitfy-evenly items-center font-light w-full"><div class="flex-grow flex-1 flex justify-center items-center m-10">
-                <div class="flex flex-col justify-center items-center text-white w-full">
+    <section class="flex flex-col justify-center items-center mt-60 w-full ">
+        <div class="text-[#FCB500] text-center">Kontakt</div>
+        <div class="flex jusitfy-center items-center w-1/2 md:w-3/4 mt-2">
+            <div class="flex w-full h-full">
+                <div class="m-10 flex flex-1 flex-grow items-center justify-center">
+                  <div class="flex w-full flex-col items-center justify-center text-white">
                     <p class="my-5 text-2xl">Umów Spotkanie</p>
-                    <form action="" class="text-white font-light flex flex-col justify-center items-center w-full"  method="POST">
-                        <input class="bg-brownish placeholder-[#D5D5D5] m-2 p-4 w-1/2 text-xl shadow-13xl rounded-md" type="text" name="name" placeholder="Imie" required>
-                        <input class="bg-brownish placeholder-[#D5D5D5] m-2 p-4 w-1/2 text-xl shadow-13xl rounded-md" type="email" name="email" placeholder="E-mail" required>
-                        <input class="bg-brownish placeholder-[#D5D5D5] m-2 p-4 w-1/2 text-xl shadow-13xl rounded-md" type="number" name="phone" placeholder="Telefon" required>
-                        <input class="bg-brownish placeholder-[#D5D5D5] m-2 p-4 w-1/2 text-xl shadow-13xl rounded-md" type="text" name="text"  placeholder="Wiadomość" required>
-                        <div class="flex justify-between items-center m-2 font-light w-1/2">  
-                            <input class="bg-brownish placeholder-white w-auto" type="checkbox" id="privacy" name="privacy" required>
-                            <label class="w-4/5" for="privacy">Przeczytałem Politke Prywatności</label></div>
-                        <button type="submit" class="bg-[#FCB500] shadow-12xl rounded-md text-black w-1/4 py-2 m-2 font-bold">Wyślij</button>
+                    <form action="" class="flex w-full flex-col items-center justify-center font-light text-white" method="POST">
+                      <input class="bg-brownish shadow-13xl m-2 w-1/2 rounded-md p-4 text-xl placeholder-[#D5D5D5]" type="text" name="name" placeholder="Imie" required />
+                      <input class="bg-brownish shadow-13xl m-2 w-1/2 rounded-md p-4 text-xl placeholder-[#D5D5D5]" type="email" name="email" placeholder="E-mail" required />
+                      <input class="bg-brownish shadow-13xl m-2 w-1/2 rounded-md p-4 text-xl placeholder-[#D5D5D5]" type="number" name="phone" placeholder="Telefon" required />
+                      <input class="bg-brownish shadow-13xl m-2 w-1/2 rounded-md p-4 text-xl placeholder-[#D5D5D5]" type="text" name="text" placeholder="Wiadomość" required />
+                      <div class="m-2 flex w-1/2 items-center justify-between font-light">
+                        <input class="bg-brownish w-auto placeholder-white" type="checkbox" id="privacy" name="privacy" required />
+                        <label class="w-4/5" for="privacy">Przeczytałem Politke Prywatności</label>
+                      </div>
+                      <button type="submit" class="shadow-12xl m-2 w-1/4 rounded-md bg-[#FCB500] py-2 font-bold text-black">Wyślij</button>
                     </form>
-                </div>    
-                
-                </div>  
-                <div class="flex-grow flex-1  flex justify-center items-center m-10 h-full">
-                <div class="flex flex-col justify-start items-center h-full">
-                    <p class="text-white">Dane kontaktowe</p>
-                    <div class="flex flex-col justify-between items-center text-white h-full">
-                        <div class="flex flex-col h-1/2">
-                            <div class="flex">
-                            <div class="">Email:</div>
-                            <div class="">Piano@gmail.com</div>
-                            </div>
-                            <div class="flex">
-                            <div class="">Telefon:</div>
-                            <div class="">+48422997203</div>
-                            </div>
-                        </div>
-                        <div class="flex flex-col h-1/2">
-                            <div class="">Oferta</div>
-                            <div class="bg-[#FCB500] shadow-12xl rounded-md text-black w-1/4 py-2 m-2 font-bold">Sprawdź </div>
-                        </div>
+                  </div>
+                </div>
+              
+                <div class="m-10  flex flex-1 flex-grow items-center justify-start w-full">
+                  <div class="flex h-full w-1/2 flex-col items-start  justify-center text-white">
+                    <p class="my-5 h-1/5 text-2xl justify-start w-full m-5">Dane Kontaktowe</p>
+                    <div class="h-3/5 w-full m-5" >  <div class="flex text-xl justify-between">
+                        <p >Email:</p>
+                        <p>Piano@gmail.com</p>
+                      </div>
+                      <div class="flex text-xl  justify-between">
+                        <p>Telefon:</p>
+                        <p>+48422997203</p>
+                      </div></div>
+                  
+                    <div class="flex h-1/5 w-full m-5 mb-2 flex-col justify-end">
+                      <p class="mb-3 text-2xl	">Oferta</p>
+                      <p class="shadow-12xl  w-1/2 rounded-md bg-[#FCB500] py-2 font-bold text-black text-center">Sprawdz</p>
                     </div>
-                </div>    </div>
-          
-            </div>
-            
+                  </div>
+                </div>
+              </div>
+              
         </div>
     </section>
 
