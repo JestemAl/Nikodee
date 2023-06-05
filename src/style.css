@@ -29,6 +29,12 @@ body
     top: 0;
     z-index:40;
       }
+
+      .sticky {
+        position: fixed;
+        top: 0;
+      }
+      
      
       :root {
         --shadow: #363636;
