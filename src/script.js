@@ -4,10 +4,10 @@ var distanceFromTop = navbar.offsetTop;
 function toggleStickyNavbar() {
     if (window.pageYOffset >= distanceFromTop) {
         navbar.classList.add("sticky");
-        navbar.classList.add("bg-black");
+        navbar.classList.add("bg-[#474747]");
     } else {
         navbar.classList.remove("sticky");
-        navbar.classList.remove("bg-black");
+        navbar.classList.remove("bg-[#474747]");
     }
 }
 
