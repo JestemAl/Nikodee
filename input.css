@@ -1,0 +1,74 @@
+@import url("https://fonts.googleapis.com/css2?family=Inria+Serif:wght@300;400;700&family=Inter:wght@200;300;400;600;700&display=swap");
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+html,
+body {
+  scroll-behavior: smooth;
+  height: 100%;
+  min-width: 375px;
+  margin: 0;
+  padding: 0;
+}
+
+.webgl {
+  position: fixed;
+  top: 0;
+  left: 0;
+  outline: none;
+}
+
+/* Text */
+.shiny-text {
+  background: radial-gradient(50% 50% at 50% 50%, #ffffff 0%, #fcb500 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  font-weight: 600;
+}
+
+.content-text {
+  line-height: 30px;
+  letter-spacing: 0.08em;
+  font-weight: 200;
+}
+
+/* navbar */
+#navbar-links > a {
+  padding-bottom: 20px;
+}
+
+#navbar-links > a:nth-child(3) {
+  padding-bottom: 10px;
+}
+
+.navbar-transparent-bg {
+  background: linear-gradient(180deg, rgba(0, 0, 0, 0) 0%, #000000 100%);
+  filter: drop-shadow(0px 13px 11px rgba(0, 0, 0, 0.59));
+}
+
+#navbar.sticky {
+  position: fixed;
+  top: 0;
+  z-index: 40;
+}
+
+.sticky {
+  position: fixed;
+  top: 0;
+}
+
+:root {
+  --shadow: #363636;
+  --scrollbarBG: #686868;
+}
+::-webkit-scrollbar {
+  width: 16px;
+}
+::-webkit-scrollbar-track {
+  background: var(--scrollbarBG);
+}
+::-webkit-scrollbar-thumb {
+  border-bottom: 100vh solid var(--shadow);
+}
