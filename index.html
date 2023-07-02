@@ -32,12 +32,15 @@
                 
             <div class="flex justify-center ">
                 <div id="navbar" class="navbar-transparent-bg w-full flex justify-center">
-                    <div id="navbar-links" class="flex  flex-row  text-white md:text-xl text-base font-light items-end justify-evenly md:w-1/2 w-4/5 align-middle">
+                    <div id="navbar-links" class="md:flex hidden  text-white md:text-xl text-base font-light items-end justify-evenly md:w-1/2 w-4/5 align-middle">
                         <a href="#pytania">Pytania</a>
                         <a href="#device">Urządzenie</a>
                         <a href="#hero"><img src="./src/img/photo/logoNikodeBig.png" class="hover:scale-105 transition" /></a>
                         <a href="#kontakt">Kontakt</a>
                         <a href="#zamow">Zamów</a>
+                    </div>
+                    <div class="flex md:hidden ">
+                        &nbsp;
                     </div>
                 </div>
             </div>
@@ -164,7 +167,7 @@
 
     <section class="flex flex-row justify-center items-center mt-60 ">
        
-        <div class="flex flex-col jusitfy-center items-center w-3/4 mt-2">
+        <div class="flex flex-col jusitfy-center items-center md:w-3/4 mt-2">
             <div class="shiny-text text-center">Ambasador</div>
             <div class="flex flex-col">
                 <div class="flex md:flex-row flex-col jusitfy-evenly items-center "><div class="md:w-1/3 flex justify-center items-center m-10">
@@ -225,7 +228,7 @@
 
     <footer class="w-full flex flex-col mt-28 sm:flex-row">
         <div class="w-full sm:w-1/3 flex justify-center sm:justify-start items-center -mt-8 ml-8">
-          <img src="./src/img/photo/logoNikodeSmall.png" alt="">
+          <img class="md:block hidden" src="./src/img/photo/logoNikodeSmall.png" alt="">
         </div>
         <div class="w-full sm:w-2/3">
           <div class="flex flex-col sm:flex-row justify-center sm:justify-end items-center text-white mr-5 space-y-4 sm:space-y-0 sm:space-x-4">
