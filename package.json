@@ -1,16 +1,21 @@
 {
-  "name": "starter-tailwind",
-  "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
-  "scripts": {
-    "build": "tailwindcss -i ./input.css -o ./src/style.css",
-    "watch": "tailwindcss -i ./input.css -o ./src/style.css --watch"
-  },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
-  "devDependencies": {
-    "tailwindcss": "^3.1.8"
+    "name": "threejs-tailwinde",
+    "private": true,
+    "version": "0.0.0",
+    "type": "module",
+    "scripts": {
+      "dev": "vite",
+      "build": "vite build"
+    },
+    "devDependencies": {
+      "autoprefixer": "^10.4.14",
+      "postcss": "^8.4.23",
+      "tailwindcss": "^3.3.2",
+      "vite": "^4.0.4"
+    },
+    "dependencies": {
+      "lil-gui": "^0.17.0",
+      "gsap": "^3.11.4",
+      "three": "^0.148.0"
+    }
   }
-}
