@@ -77,7 +77,7 @@ gltfLoader.load(
         {
             child.material = panelMaterial
         })
-        panelModel.scale.set(0.15 * (sizes.width / sizes.height), 0.15 * (sizes.width / sizes.height), 0.15 * (sizes.width / sizes.height))
+        panelModel.scale.set(0.14 * (sizes.width / sizes.height), 0.14 * (sizes.width / sizes.height), 0.14 * (sizes.width / sizes.height))
         panelModel.position.y = panelPosition
         panelModel.rotation.set(1.4, 0, 0)
 
@@ -98,7 +98,7 @@ gltfLoader.load(
         {
             child.material = moduleMaterial
         })
-        moduleModel.scale.set(0.35 * (sizes.width / sizes.height), 0.35 * (sizes.width / sizes.height), 0.35 * (sizes.width / sizes.height))
+        moduleModel.scale.set(0.3 * (sizes.width / sizes.height), 0.3 * (sizes.width / sizes.height), 0.3 * (sizes.width / sizes.height))
         moduleModel.position.y = modulePosition
 
         // modulePosition = moduleModel.position.y
@@ -125,8 +125,8 @@ const sizes = {
 window.addEventListener('resize', () =>
 {
     // Update models
-    panelModel.scale.set(0.15 * (sizes.width / sizes.height), 0.15 * (sizes.width / sizes.height), 0.15 * (sizes.width / sizes.height))
-    moduleModel.scale.set(0.35 * (sizes.width / sizes.height), 0.35 * (sizes.width / sizes.height), 0.35 * (sizes.width / sizes.height))
+    panelModel.scale.set(0.14 * (sizes.width / sizes.height), 0.14 * (sizes.width / sizes.height), 0.14 * (sizes.width / sizes.height))
+    moduleModel.scale.set(0.3 * (sizes.width / sizes.height), 0.3 * (sizes.width / sizes.height), 0.3 * (sizes.width / sizes.height))
 
     
     // Update sizes
@@ -155,6 +155,10 @@ const camera = new THREE.PerspectiveCamera(35, sizes.width / sizes.height, 0.1, 
 camera.position.z = 6
 cameraGroup.add(camera)
 
+// Controls
+// const controls = new OrbitControls(camera, canvas)
+// controls.enableDamping = true
+
 /**
  * Renderer
  */
@@ -180,12 +184,12 @@ window.addEventListener('scroll', () =>
 
     if(models)
     {
-        if(scrollPosition >= 2.5 && scrollPosition <= 2.83)
+        if(scrollPosition >= 2.45 && scrollPosition <= 2.83)
         {
-            moduleModel.rotation.y = (scrollPosition - 2.5) * 10
-            moduleModel.position.y = - (scrollPosition * 1.3 - 2.2)
-
+            moduleModel.rotation.y = (scrollPosition - 2.45) * 9
+            moduleModel.position.y = - (scrollPosition * 1.4 - 2.2)
         }
+        console.log(- (scrollPosition * 1.4 - 2.3));
     }
 })
 
@@ -221,6 +225,8 @@ const tick = () =>
     cameraGroup.position.x += (parallaxX - cameraGroup.position.x) * 5 * deltaTime
     cameraGroup.position.y += (parallaxY - cameraGroup.position.y) * 5 * deltaTime
 
+    // // Update controls
+    // controls.update()
     
     // Render
     renderer.render(scene, camera)
