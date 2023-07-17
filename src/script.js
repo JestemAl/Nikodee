@@ -220,8 +220,8 @@ const tick = () =>
     const deltaTime = elapsedTime - previousTime
     previousTime = elapsedTime
 
-    const parallaxX = cursor.x * 0.2
-    const parallaxY = - cursor.y * 0.2
+    const parallaxX = cursor.x * 0.05
+    const parallaxY = - cursor.y * 0.05
     cameraGroup.position.x += (parallaxX - cameraGroup.position.x) * 5 * deltaTime
     cameraGroup.position.y += (parallaxY - cameraGroup.position.y) * 5 * deltaTime
 
