@@ -1,6 +1,6 @@
 import * as THREE from 'three'
 // import * as dat from 'lil-gui'
-// import gsap from 'gsap'
+import gsap from 'gsap'
 import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls.js'
 import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader.js'
 import { DRACOLoader } from 'three/examples/jsm/loaders/DRACOLoader.js'
@@ -9,8 +9,8 @@ import { DRACOLoader } from 'three/examples/jsm/loaders/DRACOLoader.js'
  * params
  */
 const objectsDistance = 4
-const panelPosition = 1
-const modulePosition = -1 
+const panelSection = 6
+const moduleSection = 8
 
 /**
  * Base
@@ -46,7 +46,7 @@ gltfLoader.setDRACOLoader(dracoLoader)
 const moduleTexture = textureLoader.load('models/module/moduleBaked.jpg')
 moduleTexture.colorSpace = THREE.SRGBColorSpace
 
-const panelTexture = textureLoader.load('models/panel/view-from-camera/panelBaked.jpg')
+const panelTexture = textureLoader.load('models/panel/view-above-surface/panelBaked.jpg')
 panelTexture.colorSpace = THREE.SRGBColorSpace
 
 /**
@@ -72,15 +72,14 @@ gltfLoader.load(
     (gltf) =>
     {
         panelModel = gltf.scene
+        models.push(panelModel)
 
         panelModel.traverse((child) => 
         {
             child.material = panelMaterial
         })
-        panelModel.scale.set(0.15 * (sizes.width / sizes.height), 0.15 * (sizes.width / sizes.height), 0.15 * (sizes.width / sizes.height))
-        panelModel.position.y = panelPosition
-        panelModel.rotation.set(1.4, 0, 0)
-
+        panelModel.scale.set(0.25, 0.25, 0.25)
+        panelModel.position.y = - objectsDistance * panelSection
         scene.add(panelModel)
     }
 )
@@ -98,14 +97,14 @@ gltfLoader.load(
         {
             child.material = moduleMaterial
         })
-        moduleModel.scale.set(0.35 * (sizes.width / sizes.height), 0.35 * (sizes.width / sizes.height), 0.35 * (sizes.width / sizes.height))
-        moduleModel.position.y = modulePosition
-
-        // modulePosition = moduleModel.position.y
-
+        moduleModel.scale.set(0.5, 0.5, 0.5)
+        moduleModel.position.y = -objectsDistance * moduleSection
         scene.add(moduleModel)
     }
 )
+
+console.log(models);
+
 
 /**
  * Lights
@@ -115,23 +114,46 @@ directionalLight.position.set(1, 1, 0)
 scene.add(directionalLight)
 
 /**
+ * Particles
+ */
+// Geometry
+// const particlesCount = 200
+// const positions = new Float32Array(particlesCount * 3)
+
+// for(let i = 0; i < particlesCount; i++)
+// {
+//     positions[i * 3 + 0] = (Math.random() - 0.5) * 10
+//     positions[i * 3 + 1] = objectsDistance * 0.5 - Math.random() * objectsDistance * sectionMeshes.length
+//     positions[i * 3 + 2] = (Math.random() - 0.5) * 10
+// }
+
+// const particlesGeometry = new THREE.BufferGeometry()
+// particlesGeometry.setAttribute('position', new THREE.BufferAttribute(positions, 3))
+
+// Material
+// const particlesMaterial = new THREE.PointsMaterial({
+//     color: parameters.materialColor,
+//     sizeAttenuation: textureLoader,
+//     size: 0.03
+// })
+
+// Points
+// const particles = new THREE.Points(particlesGeometry, particlesMaterial)
+// scene.add(particles)
+
+/**
  * Sizes
  */
 const sizes = {
     width: window.innerWidth,
-    height: 2000
+    height: window.innerHeight
 }
 
 window.addEventListener('resize', () =>
 {
-    // Update models
-    panelModel.scale.set(0.15 * (sizes.width / sizes.height), 0.15 * (sizes.width / sizes.height), 0.15 * (sizes.width / sizes.height))
-    moduleModel.scale.set(0.35 * (sizes.width / sizes.height), 0.35 * (sizes.width / sizes.height), 0.35 * (sizes.width / sizes.height))
-
-    
     // Update sizes
     sizes.width = window.innerWidth
-    sizes.height = 2000
+    sizes.height = window.innerHeight
 
     // Update camera
     camera.aspect = sizes.width / sizes.height
@@ -141,7 +163,6 @@ window.addEventListener('resize', () =>
     renderer.setSize(sizes.width, sizes.height)
     renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2))
 })
-
 
 /**
  * Camera
@@ -172,24 +193,46 @@ renderer.outputColorSpace = THREE.SRGBColorSpace;
 let scrollY = window.scrollY
 let currentSection = 0
 
-
 window.addEventListener('scroll', () =>
 {
     scrollY = window.scrollY
-    const scrollPosition = scrollY / sizes.height
+    const newSection = Math.round(scrollY / sizes.height)
+    console.log(newSection);
+    // console.log(scrollY / sizes.height);
 
     if(models)
     {
-        if(scrollPosition >= 2.5 && scrollPosition <= 2.83)
-        {
-            moduleModel.rotation.y = (scrollPosition - 2.5) * 10
-            moduleModel.position.y = - (scrollPosition * 1.3 - 2.2)
+        currentSection = newSection
 
-        }
+    if(currentSection ==  moduleSection)
+    {
+        gsap.to(
+            moduleModel.rotation,
+            {
+                duration: 1.5,
+                ease: 'power2.inOut',
+                x: '+=1',
+                y: '+=3',
+                z: '+=0'
+            }
+        )
     }
+    if(currentSection ==  panelSection)
+    {
+        gsap.to(
+            panelModel.rotation,
+            {
+                duration: 1.5,
+                ease: 'power2.inOut',
+                x: '+=1',
+                y: '+=3',
+                z: '+=0'
+            }
+        )
+    }
+    }
+    
 })
-
-
 
 /**
  * Cursor
@@ -216,12 +259,25 @@ const tick = () =>
     const deltaTime = elapsedTime - previousTime
     previousTime = elapsedTime
 
+    // Animate camera
+    camera.position.y = - scrollY / sizes.height * objectsDistance
+
     const parallaxX = cursor.x * 0.2
     const parallaxY = - cursor.y * 0.2
     cameraGroup.position.x += (parallaxX - cameraGroup.position.x) * 5 * deltaTime
     cameraGroup.position.y += (parallaxY - cameraGroup.position.y) * 5 * deltaTime
 
-    
+    // Animate meshes
+    // if(models)
+    // {
+    //     for(const model of models)
+    //     {
+    //             model.rotation.x += deltaTime * 0.1
+    //             model.rotation.y += deltaTime * 0.12
+    //     }
+    // }
+
+
     // Render
     renderer.render(scene, camera)
 
