@@ -1,5 +1,5 @@
 import * as THREE from 'three'
-// import * as dat from 'lil-gui'
+import * as dat from 'lil-gui'
 import gsap from 'gsap'
 import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls.js'
 import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader.js'
@@ -8,15 +8,17 @@ import { DRACOLoader } from 'three/examples/jsm/loaders/DRACOLoader.js'
 /**
  * params
  */
-THREE.ColorManagement.enabled = false
+const params = {}
 
 /**
  * Base
- */
+*/
+THREE.ColorManagement.enabled = false
+
 // Debug
-// const gui = new dat.GUI({
-//     width: 400
-// })
+const gui = new dat.GUI({
+    width: 400
+})
 
 // Canvas
 const canvas = document.querySelector('canvas.webgl-module')
@@ -67,11 +69,13 @@ gltfLoader.load(
             child.material = moduleMaterial
         })
         moduleModel.scale.set(0.3 * (sizes.width / sizes.height), 0.3 * (sizes.width / sizes.height), 0.3 * (sizes.width / sizes.height))
-        // moduleModel.position.y = modulePosition
-
-        // modulePosition = moduleModel.position.y
+        moduleModel.rotation.set(0.16, 0.4, 0)
 
         scene.add(moduleModel)
+
+        // gui.add(moduleModel.rotation, 'x').min(- Math.PI).max(Math.PI).step(0.001).name('rotation x model')
+        // gui.add(moduleModel.rotation, 'y').min(- Math.PI).max(Math.PI).step(0.001).name('rotation y model')
+        // gui.add(moduleModel.rotation, 'z').min(- Math.PI).max(Math.PI).step(0.001).name('rotation z model')
     }
 )
 

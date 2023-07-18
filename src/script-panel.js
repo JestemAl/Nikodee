@@ -1,5 +1,5 @@
 import * as THREE from 'three'
-// import * as dat from 'lil-gui'
+import * as dat from 'lil-gui'
 import gsap from 'gsap'
 import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls.js'
 import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader.js'
@@ -9,10 +9,11 @@ import { DRACOLoader } from 'three/examples/jsm/loaders/DRACOLoader.js'
  * Base
  */
 THREE.ColorManagement.enabled = false
+
 // Debug
-// const gui = new dat.GUI({
-//     width: 400
-// })
+const gui = new dat.GUI({
+    width: 400
+})
 
 // Canvas
 const canvas = document.querySelector('canvas.webgl-panel')
@@ -62,11 +63,16 @@ gltfLoader.load(
         {
             child.material = panelMaterial
         })
-        panelModel.scale.set(0.14 * (sizes.width / sizes.height), 0.14 * (sizes.width / sizes.height), 0.14 * (sizes.width / sizes.height))
-        panelModel.rotation.set(1.4, 0, 0)
-        panelModel.position.y = -.5
+
+        panelModel.scale.set(0.13 * (sizes.width / sizes.height), 0.13 * (sizes.width / sizes.height), 0.13 * (sizes.width / sizes.height))
+        panelModel.position.y = -0.5
+        panelModel.rotation.set(1.266, 0.078, -0.414)
 
         scene.add(panelModel)
+
+        // gui.add(panelModel.rotation, 'y').min(- Math.PI).max(Math.PI).step(0.001).name('rotation y panel')
+        // gui.add(panelModel.rotation, 'x').min(- Math.PI).max(Math.PI).step(0.001).name('rotation x panel')
+        // gui.add(panelModel.rotation, 'z').min(- Math.PI).max(Math.PI).step(0.001).name('rotation z panel')
     }
 )
 
