@@ -14,7 +14,7 @@ body
     overflow: hidden;
 } */
 
-canvas
+.webgl
 {
     position: absolute;
     outline: none;
