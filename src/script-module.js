@@ -145,6 +145,17 @@ renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2))
 // renderer.outputColorSpace = THREE.SRGBColorSpace;
 renderer.outputColorSpace = THREE.LinearSRGBColorSpace
 
+
+gui.add(renderer, 'toneMapping', {
+    No: THREE.NoToneMapping,
+    Linear: THREE.LinearToneMapping,
+    Rainhard: THREE.ReinhardToneMapping,
+    Cineon: THREE.CineonToneMapping,
+    ACESFilmic: THREE.ACESFilmicToneMapping
+})
+gui.add(renderer, 'toneMappingExposure').min(0).max(10).step(0.001)
+
+
 /**
  * Scroll
  */

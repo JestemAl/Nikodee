@@ -141,6 +141,7 @@ renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2))
 // renderer.outputColorSpace = THREE.SRGBColorSpace;
 renderer.outputColorSpace = THREE.LinearSRGBColorSpace
 
+
 /**
  * Scroll
  */
@@ -221,3 +222,4 @@ const tick = () =>
 }
 
 tick()
+
