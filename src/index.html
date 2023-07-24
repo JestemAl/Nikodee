@@ -114,39 +114,36 @@
                 <div class="w-full text-right text-white md:text-xl text-base font-extralight underline underline-offset-8">Specyfikacja</div>
             </div>
         </section>
-        
-        <section>
-            <canvas class="webgl-panel"></canvas>
-        </section>
+        <div id="canvas-container">
+            <canvas id="webgl-panel"></canvas>
 
-        <section class="flex justify-center items-center">
-            <div class="flex justify-center items-center w-3/4 mt-2">
-                <div class="h-screen"> </div>
-            </div>
-        </section>
-        
-    
-        <section class="flex flex-col justify-center items-center mt-28 sm:mt-10">
-            <div class="shiny-text">Dla Nauczyciela</div>
-            <div class="flex justify-center items-center w-3/4 mt-2 bg-black/20 rounded-xl shadow-10xl">
-                <div class="w-full text-center text-white md:text-5xl text-xl m-5">Panel Sterujący</div>
-            </div>
-        </section>
-        
-        <section class="flex flex-col justify-center items-center mt-5 sm:mt-10">
-            <div class="flex justify-center items-center w-3/4 mt-2 bg-black/20 rounded-xl shadow-10xl">
-                <div class="content-text w-full text-justify text-white md:text-xl text-base my-8 mx-5 sm:mx-20 font-extralight">
-                    Konsola nauczyciela umożliwia sterowania całym systemem przez osobę prowadzącą zajęcia. Za pomocą zestawu fizycznych przycisków, nauczyciel będzie mógł dowolnie sterować źródłem dźwięku słyszanego przez każdego z uczniów. Będzie mógł wyciszyć wszystkie instrumenty, będzie mógł przekierować dźwięk z własnego modułu stanowiskowego do wszystkich uczniów w celu dokonania demonstracji brzmienia danego fragmentu muzycznego.
+            <section class="flex justify-center items-center">
+                <div class="flex justify-center items-center w-3/4 mt-2">
+                    <div class="h-screen"> </div>
                 </div>
-            </div>
-            <div class="flex w-3/4 mt-5 sm:mr-8">
-                <div class="w-full text-right text-white md:text-xl text-base font-extralight underline underline-offset-8">Specyfikacja</div>
-            </div>
-        </section>
+            </section>
+            
         
-        <section>
-            <canvas class="webgl-module"></canvas>
-        </section>
+            <section class="flex flex-col justify-center items-center mt-28 sm:mt-10">
+                <div class="shiny-text">Dla Nauczyciela</div>
+                <div class="flex justify-center items-center w-3/4 mt-2 bg-black/20 rounded-xl shadow-10xl">
+                    <div class="w-full text-center text-white md:text-5xl text-xl m-5">Panel Sterujący</div>
+                </div>
+            </section>
+            
+            <section class="flex flex-col justify-center items-center mt-5 sm:mt-10">
+                <div class="flex justify-center items-center w-3/4 mt-2 bg-black/20 rounded-xl shadow-10xl">
+                    <div class="content-text w-full text-justify text-white md:text-xl text-base my-8 mx-5 sm:mx-20 font-extralight">
+                        Konsola nauczyciela umożliwia sterowania całym systemem przez osobę prowadzącą zajęcia. Za pomocą zestawu fizycznych przycisków, nauczyciel będzie mógł dowolnie sterować źródłem dźwięku słyszanego przez każdego z uczniów. Będzie mógł wyciszyć wszystkie instrumenty, będzie mógł przekierować dźwięk z własnego modułu stanowiskowego do wszystkich uczniów w celu dokonania demonstracji brzmienia danego fragmentu muzycznego.
+                    </div>
+                </div>
+                <div class="flex w-3/4 mt-5 sm:mr-8">
+                    <div class="w-full text-right text-white md:text-xl text-base font-extralight underline underline-offset-8">Specyfikacja</div>
+                </div>
+            </section>
+
+            <canvas id="webgl-module"></canvas>
+        </div>
 
         <section class="flex justify-center items-center ">
             <div class="flex justify-center items-center w-3/4 mt-2">
@@ -249,7 +246,7 @@
           </footer>
           
     </div>
-    <script type="module" src="./script-panel.js"></script>
+    <!-- <script type="module" src="./script-panel.js"></script> -->
     <script type="module" src="./script-module.js"></script>
 
 </body>

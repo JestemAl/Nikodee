@@ -18,6 +18,17 @@ canvas
 {
     position: absolute;
     outline: none;
+    display: flex;
+}
+
+#canvas-container {
+  position: relative;
+}
+
+#text-container {
+  padding: 20px;
+  box-sizing: border-box;
+  background-color: rgba(255, 255, 255, 0.8); /* Dodałem tło dla tekstu, aby był czytelny */
 }
 
 /* Text */
