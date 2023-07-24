@@ -16,9 +16,9 @@ const params = {}
 THREE.ColorManagement.enabled = false
 
 // Debug
-const gui = new dat.GUI({
-    width: 400
-})
+// const gui = new dat.GUI({
+//     width: 400
+// })
 
 // Canvas
 const canvasModule = document.getElementById('webgl-module')
@@ -199,36 +199,71 @@ rendererModule.setPixelRatio(Math.min(window.devicePixelRatio, 2))
 rendererModule.outputColorSpace = THREE.LinearSRGBColorSpace
 
 
-gui.add(rendererPanel, 'toneMapping', {
-    No: THREE.NoToneMapping,
-    Linear: THREE.LinearToneMapping,
-    Rainhard: THREE.ReinhardToneMapping,
-    Cineon: THREE.CineonToneMapping,
-    ACESFilmic: THREE.ACESFilmicToneMapping
-})
-gui.add(rendererPanel, 'toneMappingExposure').min(0).max(10).step(0.001)
+// gui.add(rendererPanel, 'toneMapping', {
+//     No: THREE.NoToneMapping,
+//     Linear: THREE.LinearToneMapping,
+//     Rainhard: THREE.ReinhardToneMapping,
+//     Cineon: THREE.CineonToneMapping,
+//     ACESFilmic: THREE.ACESFilmicToneMapping
+// })
+// gui.add(rendererPanel, 'toneMappingExposure').min(0).max(10).step(0.001)
 
 
 /**
- * Scroll
+ * Intersection observer API
  */
-let scrollY = window.scrollY
+const models = ['webgl-panel', 'webgl-module']
 
-window.addEventListener('scroll', () =>
+const options = {
+    root: null,
+    rootMargin: '0px',
+    threshold: 0.5, 
+};
+
+const handleIntersection  = (model, entry) => 
 {
-    scrollY = window.scrollY
-    const scrollPosition = scrollY / sizes.height
+    if (entry.isIntersecting) {
+        if(model == "webgl-panel")
+        {
+            gsap.to(
+                panelModel.rotation,
+                {
+                    duration: 1.5,
+                    ease: 'power2.inOut',
+                    z: Math.PI * 2,
+                }
+            )
+        }
+        else if(model == "webgl-module")
+        {
+            gsap.to(
+                moduleModel.rotation,
+                {
+                    duration: 1.5,
+                    ease: 'power2.inOut',
+                    y: Math.PI * 2,
+                }
+            )
+        }
+      }
+};
 
-    // if(moduleModel)
-    // {
-    //     // console.log(scrollPosition);
-    //     if(scrollPosition >= 3.5 && scrollPosition <= 4.3)
-    //     {
-    //         moduleModel.rotation.y = (scrollPosition - 2.45) * 9
-    //         // moduleModel.position.y = - (scrollPosition * 1.4 - 2.2)
-    //     }
-    // }
-})
+const observer = new IntersectionObserver((entries) => {
+    entries.forEach((entry) => {
+      for (const model of models) {
+        if (entry.target.id === model) {
+          handleIntersection(model, entry);
+          break;
+        }
+      }
+    });
+  }, options);
+
+models.forEach((modelId) => 
+{
+const model = document.getElementById(modelId);
+observer.observe(model);
+});
 
 
 
