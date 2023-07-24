@@ -218,52 +218,44 @@ const options = {
     root: null,
     rootMargin: '0px',
     threshold: 0.5, 
-};
+}
 
 const handleIntersection  = (model, entry) => 
 {
-    if (entry.isIntersecting) {
-        if(model == "webgl-panel")
-        {
-            gsap.to(
-                panelModel.rotation,
-                {
-                    duration: 1.5,
-                    ease: 'power2.inOut',
-                    z: Math.PI * 2,
-                }
-            )
-        }
-        else if(model == "webgl-module")
-        {
-            gsap.to(
-                moduleModel.rotation,
-                {
-                    duration: 1.5,
-                    ease: 'power2.inOut',
-                    y: Math.PI * 2,
-                }
-            )
-        }
+    if (entry.isIntersecting) 
+    {
+        const targetModel = model == "webgl-panel" ? panelModel : moduleModel;
+        gsap.to(targetModel.rotation, {
+            duration: 1.5,
+            ease: 'power2.inOut',
+            z: model == "webgl-panel" ? Math.PI * 2 : 0,
+            y: model == "webgl-module" ? Math.PI * 2 : 0,
+            onComplete: () => {
+                entry.target.isAnimated = false;
+            }
+        })
+        entry.target.isAnimated = true
       }
-};
+      else {
+        gsap.killTweensOf(targetModel.rotation);
+        entry.target.isAnimated = false; 
+      }
+}
 
-const observer = new IntersectionObserver((entries) => {
+const observer = new IntersectionObserver((entries) => 
+{
     entries.forEach((entry) => {
-      for (const model of models) {
-        if (entry.target.id === model) {
-          handleIntersection(model, entry);
-          break;
-        }
-      }
-    });
+      const model = entry.target.id;
+      handleIntersection(model, entry);
+    })
   }, options);
 
-models.forEach((modelId) => 
-{
-const model = document.getElementById(modelId);
-observer.observe(model);
-});
+  models.forEach((modelId) => 
+  {
+    const model = document.getElementById(modelId);
+    observer.observe(model);
+    model.isAnimated = false;
+  })
 
 
 
