@@ -8,28 +8,29 @@
     padding: 0;
 }
 
-/* html,
+html,
 body
 {
-    overflow: hidden;
-} */
+    overflow-x: hidden;
+}
 
 canvas
 {
     position: absolute;
     outline: none;
-    display: flex;
 }
 
-#canvas-container {
+#canvas-container 
+{
   position: relative;
+  max-width: 100%;
+
 }
 
-#text-container {
-  padding: 20px;
-  box-sizing: border-box;
-  background-color: rgba(255, 255, 255, 0.8); /* Dodałem tło dla tekstu, aby był czytelny */
-}
+/* .canvas-minicontainer
+{
+  overflow: hidden;
+} */
 
 /* Text */
 .shiny-text {
