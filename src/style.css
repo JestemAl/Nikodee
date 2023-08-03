@@ -12,7 +12,26 @@ html,
 body
 {
     overflow-x: hidden;
+    margin: 0;
 }
+
+.track-image
+{
+  width: 60vmin;
+  height: 56vmin;
+  object-fit: cover;
+  object-position: 0 center;
+}
+
+.stop-scrolling {
+  overflow-y: hidden;
+}
+
+#track {
+  /* width: 600%;  */
+  transition: transform 0.3s ease-in-out;
+}
+
 
 canvas
 {
@@ -26,11 +45,6 @@ canvas
   max-width: 100%;
 
 }
-
-/* .canvas-minicontainer
-{
-  overflow: hidden;
-} */
 
 /* Text */
 .shiny-text {
