@@ -15,24 +15,30 @@ body
     margin: 0;
 }
 
-.track-image
-{
+
+/* Photo slider */
+#image-track {
+  display: flex;
+  gap: 4vmin;
+  position: relative;
+  /* transform: translate(0%, -50%);  */
+  user-select: none; 
+}
+
+#image-track > .image {
   width: 60vmin;
   height: 56vmin;
   object-fit: cover;
-  object-position: 0 center;
+  object-position: 100% center;
 }
 
-.stop-scrolling {
-  overflow-y: hidden;
-}
-
-#track {
-  /* width: 600%;  */
-  transition: transform 0.3s ease-in-out;
+.image{
+  border-radius: 1rem;
+  opacity: 0.7;
 }
 
 
+/* canvas */
 canvas
 {
     position: absolute;
@@ -45,6 +51,16 @@ canvas
   max-width: 100%;
 
 }
+
+
+/* shadows */
+.shadow-inset
+{
+  background: rgba(0, 0, 0, 0.2);
+  box-shadow: inset -10px 18px 36px -18px #000000;
+  border-radius: 23px;
+}
+
 
 /* Text */
 .shiny-text {
@@ -60,6 +76,7 @@ canvas
     letter-spacing: 0.08em;
     font-weight: 200;
   }
+  
   
   /* navbar */
   #navbar-links > a {
