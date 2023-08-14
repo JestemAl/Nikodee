@@ -36,14 +36,16 @@ window.addEventListener('scroll', function () {
   var heroSection = document.querySelector('#hero');
   var heroPosition = heroSection.getBoundingClientRect().bottom;
 
-  if (window.scrollY > heroPosition && heroPosition < 5) { // ms jesli scroll wiekszy niz dolna pozycja hero oraz pozycja hero mniejsza niz 10 to stickuje a inaczej odstickowuje
+  if (window.scrollY > heroPosition && heroPosition < 5) {
     toggleClass(nav, 'sticky', true);
     toggleClass(nav, 'pt-2', true);
+    toggleClass(navCopy, 'pt-2', true);
     toggleClass(navCopy, 'hidden', false);
     toggleClass(nav, 'navbar-scroll-bg', true);
-  } else {
+  } else if (heroPosition > -50) {
     toggleClass(nav, 'sticky', false);
     toggleClass(navCopy, 'hidden', true);
+    toggleClass(navCopy, 'pt-2', false);
     toggleClass(nav, 'navbar-scroll-bg', false);
     toggleClass(nav, 'pt-2', false);
   }

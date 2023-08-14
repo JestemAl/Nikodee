@@ -2,19 +2,17 @@
 @tailwind components;
 @tailwind utilities;
 
-*
-{
-    margin: 0;
-    padding: 0;
+* {
+  margin: 0;
+  padding: 0;
 }
 
 html,
-body
-{
-    overflow-x: hidden;
-    margin: 0;
+body {
+  overflow-x: hidden;
+  margin: 0;
+  scroll-behavior: smooth;
 }
-
 
 /* Photo slider */
 #image-track {
@@ -22,7 +20,7 @@ body
   gap: 4vmin;
   position: relative;
   /* transform: translate(0%, -50%);  */
-  user-select: none; 
+  user-select: none;
 }
 
 #image-track > .image {
@@ -32,96 +30,90 @@ body
   object-position: 100% center;
 }
 
-.image{
+.image {
   border-radius: 1rem;
   opacity: 0.7;
 }
 
-
 /* canvas */
-canvas
-{
-    position: absolute;
-    outline: none;
+canvas {
+  position: absolute;
+  outline: none;
 }
 
-#canvas-container 
-{
+#canvas-container {
   position: relative;
   max-width: 100%;
-
 }
 
-
 /* shadows */
-.shadow-inset
-{
+.shadow-inset {
   background: rgba(0, 0, 0, 0.2);
   box-shadow: inset -10px 18px 36px -18px #000000;
   border-radius: 23px;
 }
 
-
 /* Text */
 .shiny-text {
-    background: radial-gradient(50% 50% at 50% 50%, #ffffff 0%, #fcb500 100%);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
-    font-weight: 600;
-  }
-  
-  .content-text {
-    line-height: 30px;
-    letter-spacing: 0.08em;
-    font-weight: 200;
-  }
-  
-  
-  /* navbar */
-  #navbar-links > a {
-    padding-bottom: 20px;
-  }
-  
-  #navbar-links > a:nth-child(3) {
-    padding-bottom: 10px;
-  }
-  
-  .navbar-transparent-bg {
-    background: linear-gradient(180deg, rgba(0, 0, 0, 0) 0%, #000000 100%);
-    filter: drop-shadow(0px 13px 11px rgba(0, 0, 0, 0.59));
-  }
+  background: radial-gradient(50% 50% at 50% 50%, #ffffff 0%, #fcb500 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  font-weight: 600;
+}
 
-  .navbar-scroll-bg {
-    background: linear-gradient(90deg, rgba(0, 0, 0, 0.85) 0%, #131313 0%);
-    border-bottom: rgb(40, 40, 40) 0.5px solid;
-  }  
-  
-  #navbar.sticky {
-    position: fixed;
-    top: 0;
-    z-index: 40;
-  }
-  
-  :root {
-    --shadow: #363636;
-    --scrollbarBG: #686868;
-  }
-  ::-webkit-scrollbar {
-    width: 16px;
-  }
-  ::-webkit-scrollbar-track {
-    background: var(--scrollbarBG);
-  }
-  ::-webkit-scrollbar-thumb {
-    border-bottom: 100vh solid var(--shadow);
-  }
+.content-text {
+  line-height: 30px;
+  letter-spacing: 0.08em;
+  font-weight: 200;
+}
 
-  .sticky{
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%
+/* navbar */
+#navbar-links > a {
+  padding-bottom: 20px;
+}
+
+#navbar-links > a:nth-child(3) {
+  padding-bottom: 10px;
+}
+
+.navbar-transparent-bg {
+  background: linear-gradient(180deg, rgba(0, 0, 0, 0) 0%, #000000 100%);
+  filter: drop-shadow(0px 13px 11px rgba(0, 0, 0, 0.59));
+}
+
+.navbar-scroll-bg {
+  background: linear-gradient(90deg, rgba(0, 0, 0, 0.85) 0%, #131313 0%);
+  border-bottom: rgb(40, 40, 40) 0.5px solid;
+  transition: background 10s ease-in-out;
+}
+
+#navbar.sticky {
+  position: fixed;
+  top: 0;
+  z-index: 40;
+}
+
+:root {
+  --shadow: #363636;
+  --scrollbarBG: #686868;
+  --navbarTextUnderlineColor: #6b6b6b;
+}
+::-webkit-scrollbar {
+  width: 16px;
+}
+::-webkit-scrollbar-track {
+  background: var(--scrollbarBG);
+}
+::-webkit-scrollbar-thumb {
+  border-bottom: 100vh solid var(--shadow);
+}
+
+.sticky {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
 }
 
 #navbar-links a {
@@ -129,17 +121,17 @@ canvas
 }
 
 #navbar-links a:not(:nth-of-type(3))::before {
-  content: '';
+  content: "";
   position: absolute;
   width: 100%;
   height: 4px;
   border-radius: 4px;
-  background-color: #6b6b6b;
+  background-color: var(--navbarTextUnderlineColor);
   bottom: 0;
   left: 0;
   transform-origin: right;
   transform: scaleX(0);
-  transition: transform .3s ease-in-out;
+  transition: transform 0.3s ease-in-out;
 }
 
 #navbar-links a:not(:nth-of-type(3)):hover::before {
