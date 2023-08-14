@@ -30,6 +30,34 @@ const handleOnMove = e => {
   }
 }
 
+window.addEventListener('scroll', function() {
+  var nav = document.querySelector('.nav');
+  var navCopy = document.querySelector('#navCopy');
+  var heroSection = document.querySelector('#hero');
+  var heroPosition = heroSection.getBoundingClientRect().bottom;
+
+  if (window.scrollY > heroPosition && heroPosition < 5) { // ms jesli scroll wiekszy niz dolna pozycja hero oraz pozycja hero mniejsza niz 10 to stickuje a inaczej odstickowuje
+    toggleClass(nav, 'sticky', true);
+    toggleClass(nav, 'pt-2', true);
+    toggleClass(navCopy, 'hidden', false);
+    toggleClass(nav, 'navbar-transparent-bg', false);
+    toggleClass(nav, 'navbar-scroll-bg', true);
+  } else {
+    toggleClass(nav, 'sticky', false);
+    toggleClass(nav, 'navbar-transparent-bg', true);
+    toggleClass(navCopy, 'hidden', true);
+    toggleClass(nav, 'navbar-scroll-bg', false);
+    toggleClass(nav, 'pt-2', false);
+  }
+});
+
+function toggleClass(element, className, add) {
+  if (add) {
+    element.classList.add(className);
+  } else {
+    element.classList.remove(className);
+  }
+}
 /* -- Had to add extra lines for touch events -- */
 
 window.onmousedown = e => handleOnDown(e);

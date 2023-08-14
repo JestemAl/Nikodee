@@ -91,16 +91,16 @@ canvas
     background: linear-gradient(180deg, rgba(0, 0, 0, 0) 0%, #000000 100%);
     filter: drop-shadow(0px 13px 11px rgba(0, 0, 0, 0.59));
   }
+
+  .navbar-scroll-bg {
+    background: linear-gradient(90deg, rgba(0, 0, 0, 0.85) 0%, #131313 0%);
+    border-bottom: rgb(40, 40, 40) 0.5px solid;
+  }  
   
   #navbar.sticky {
     position: fixed;
     top: 0;
     z-index: 40;
-  }
-  
-  .sticky {
-    position: fixed;
-    top: 0;
   }
   
   :root {
@@ -116,4 +116,33 @@ canvas
   ::-webkit-scrollbar-thumb {
     border-bottom: 100vh solid var(--shadow);
   }
-  
+
+  .sticky{
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%
+}
+
+#navbar-links a {
+  position: relative;
+}
+
+#navbar-links a:not(:nth-of-type(3))::before {
+  content: '';
+  position: absolute;
+  width: 100%;
+  height: 4px;
+  border-radius: 4px;
+  background-color: #6b6b6b;
+  bottom: 0;
+  left: 0;
+  transform-origin: right;
+  transform: scaleX(0);
+  transition: transform .3s ease-in-out;
+}
+
+#navbar-links a:not(:nth-of-type(3)):hover::before {
+  transform-origin: left;
+  transform: scaleX(1);
+}
