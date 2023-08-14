@@ -30,7 +30,7 @@ const handleOnMove = e => {
   }
 }
 
-window.addEventListener('scroll', function () {
+window.addEventListener('scroll', () => {
   var nav = document.querySelector('.nav');
   var navCopy = document.querySelector('#navCopy');
   var heroSection = document.querySelector('#hero');
@@ -49,7 +49,7 @@ window.addEventListener('scroll', function () {
     toggleClass(nav, 'navbar-scroll-bg', false);
     toggleClass(nav, 'pt-2', false);
   }
-});
+}, { passive: true });
 
 function toggleClass(element, className, add) {
   if (add) {
