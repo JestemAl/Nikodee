@@ -3,34 +3,34 @@ const track = document.getElementById("image-track");
 const handleOnDown = e => track.dataset.mouseDownAt = e.clientX;
 
 const handleOnUp = () => {
-  track.dataset.mouseDownAt = "0";  
+  track.dataset.mouseDownAt = "0";
   track.dataset.prevPercentage = track.dataset.percentage;
 }
 
 const handleOnMove = e => {
-  if(track.dataset.mouseDownAt === "0") return;
-  
+  if (track.dataset.mouseDownAt === "0") return;
+
   const mouseDelta = parseFloat(track.dataset.mouseDownAt) - e.clientX,
-        maxDelta = window.innerWidth / 2;
-  
+    maxDelta = window.innerWidth / 2;
+
   const percentage = (mouseDelta / maxDelta) * -100,
-        nextPercentageUnconstrained = parseFloat(track.dataset.prevPercentage) + percentage,
-        nextPercentage = Math.max(Math.min(nextPercentageUnconstrained, 0), -75);
-  
+    nextPercentageUnconstrained = parseFloat(track.dataset.prevPercentage) + percentage,
+    nextPercentage = Math.max(Math.min(nextPercentageUnconstrained, 0), -75);
+
   track.dataset.percentage = nextPercentage;
-  
+
   track.animate({
     transform: `translate(${nextPercentage}%, 0%)`
   }, { duration: 1200, fill: "forwards" });
-  
-  for(const image of track.getElementsByClassName("image")) {
+
+  for (const image of track.getElementsByClassName("image")) {
     image.animate({
       objectPosition: `${100 + nextPercentage}% center`
     }, { duration: 1200, fill: "forwards" });
   }
 }
 
-window.addEventListener('scroll', function() {
+window.addEventListener('scroll', function () {
   var nav = document.querySelector('.nav');
   var navCopy = document.querySelector('#navCopy');
   var heroSection = document.querySelector('#hero');
@@ -40,11 +40,9 @@ window.addEventListener('scroll', function() {
     toggleClass(nav, 'sticky', true);
     toggleClass(nav, 'pt-2', true);
     toggleClass(navCopy, 'hidden', false);
-    toggleClass(nav, 'navbar-transparent-bg', false);
     toggleClass(nav, 'navbar-scroll-bg', true);
   } else {
     toggleClass(nav, 'sticky', false);
-    toggleClass(nav, 'navbar-transparent-bg', true);
     toggleClass(navCopy, 'hidden', true);
     toggleClass(nav, 'navbar-scroll-bg', false);
     toggleClass(nav, 'pt-2', false);
