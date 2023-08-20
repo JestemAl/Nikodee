@@ -30,6 +30,10 @@ const handleOnMove = e => {
   }
 }
 
+/**
+ * NavBar
+ */
+
 window.addEventListener('scroll', () => {
   var nav = document.querySelector('.nav');
   var navCopy = document.querySelector('#navCopy');
