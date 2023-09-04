@@ -19,12 +19,13 @@ body {
   display: flex;
   gap: 4vmin;
   position: relative;
+
   /* transform: translate(0%, -50%);  */
-  user-select: none;
+  user-select: none; /* -- Prevent image highlighting -- */
 }
 
 #image-track > .image {
-  width: 60vmin;
+  width: 40vmin;
   height: 56vmin;
   object-fit: cover;
   object-position: 100% center;
