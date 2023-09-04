@@ -25,7 +25,7 @@ body {
 }
 
 #image-track > .image {
-  width: 40vmin;
+  width: 60vmin;
   height: 56vmin;
   object-fit: cover;
   object-position: 100% center;
