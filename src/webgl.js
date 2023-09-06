@@ -118,6 +118,14 @@ const sizes = {
     width: window.innerWidth,
     height: window.innerHeight
 }
+if (window.innerWidth > 768) {
+    sizes.height = sizes.height;
+}
+else
+{
+    sizes.height = sizes.height / 2;
+}
+
 
 window.addEventListener('resize', () =>
 {
