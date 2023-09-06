@@ -28,7 +28,10 @@ const handleOnMove = e => {
       objectPosition: `${100 + nextPercentage}% center`
     }, { duration: 1200, fill: "forwards" });
   }
+  console.log(`percentage = ${percentage}`);
+  console.log(`nextPercentage = ${nextPercentage}`);
 }
+
 
 // const track = document.getElementById("image-track");
 // const imageTrack = document.getElementById("image-track"); // Dodaj referencję do #image-track
@@ -116,6 +119,10 @@ function toggleClass(element, className, add) {
     element.classList.remove(className);
   }
 }
+
+/**
+ * order.html
+ */
 
 document.addEventListener("DOMContentLoaded", function() {
   // Pobierz wszystkie elementy .box
