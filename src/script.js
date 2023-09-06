@@ -116,3 +116,21 @@ function toggleClass(element, className, add) {
     element.classList.remove(className);
   }
 }
+
+document.addEventListener("DOMContentLoaded", function() {
+  // Pobierz wszystkie elementy .box
+  const boxes = document.querySelectorAll(".box");
+
+  // Dodaj obsługę kliknięcia dla każdego elementu .box
+  boxes.forEach(function(box) {
+      box.addEventListener("click", function() {
+          // Usuń klasę "active" z wszystkich elementów .box
+          boxes.forEach(function(box) {
+              box.classList.remove("active");
+          });
+
+          // Dodaj klasę "active" tylko do klikniętego elementu .box
+          this.classList.add("active");
+      });
+  });
+});
