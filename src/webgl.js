@@ -1,5 +1,4 @@
 import * as THREE from 'three'
-import * as dat from 'lil-gui'
 import gsap from 'gsap'
 import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls.js'
 import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader.js'
@@ -8,17 +7,25 @@ import { DRACOLoader } from 'three/examples/jsm/loaders/DRACOLoader.js'
 /**
  * params
  */
-const params = {}
+const isMobile = window.innerWidth <= 768; 
+
+let canvasHeight;
+
+if (innerHeight > innerWidth || isMobile) {
+    canvasHeight = window.innerHeight / 2;
+} else {
+    canvasHeight = window.innerHeight;
+}
+
+const sizes = {
+    width: window.innerWidth,
+    height: canvasHeight
+};
 
 /**
  * Base
 */
 THREE.ColorManagement.enabled = false
-
-// Debug
-// const gui = new dat.GUI({
-//     width: 400
-// })
 
 // Canvas
 const canvasModule = document.getElementById('webgl-module')
@@ -83,10 +90,6 @@ gltfLoader.load(
         panelModel.rotation.set(1.266, 0.078, -0.414)
 
         scenePanel.add(panelModel)
-
-        // gui.add(panelModel.rotation, 'y').min(- Math.PI).max(Math.PI).step(0.001).name('rotation y panel')
-        // gui.add(panelModel.rotation, 'x').min(- Math.PI).max(Math.PI).step(0.001).name('rotation x panel')
-        // gui.add(panelModel.rotation, 'z').min(- Math.PI).max(Math.PI).step(0.001).name('rotation z panel')
     }
 )
 
@@ -105,28 +108,11 @@ gltfLoader.load(
         moduleModel.rotation.set(0.16, 0.4, 0)
 
         sceneModule.add(moduleModel)
-
-        // gui.add(moduleModel.rotation, 'x').min(- Math.PI).max(Math.PI).step(0.001).name('rotation x model')
-        // gui.add(moduleModel.rotation, 'y').min(- Math.PI).max(Math.PI).step(0.001).name('rotation y model')
-        // gui.add(moduleModel.rotation, 'z').min(- Math.PI).max(Math.PI).step(0.001).name('rotation z model')
     }
 )
 /**
- * Sizes
+ * resize
  */
-const sizes = {
-    width: window.innerWidth,
-    height: window.innerHeight
-}
-if (window.innerWidth > 768) {
-    sizes.height = sizes.height;
-}
-else
-{
-    sizes.height = sizes.height / 2;
-}
-
-
 window.addEventListener('resize', () =>
 {
     // Update models
@@ -190,6 +176,7 @@ const rendererPanel = new THREE.WebGLRenderer({
     antialias: true
 })
 // rendererPanel.useLegacyLights = false
+
 rendererPanel.setSize(sizes.width, sizes.height)
 rendererPanel.setPixelRatio(Math.min(window.devicePixelRatio, 2))
 // rendererPanel.outputColorSpace = THREE.SRGBColorSpace;
