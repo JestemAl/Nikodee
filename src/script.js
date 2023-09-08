@@ -1,91 +1,50 @@
 const track = document.getElementById("image-track");
 
-const handleOnDown = e => track.dataset.mouseDownAt = e.clientX;
+if (track) {
+  const handleOnDown = e => track.dataset.mouseDownAt = e.clientX;
 
-const handleOnUp = () => {
-  track.dataset.mouseDownAt = "0";
-  track.dataset.prevPercentage = track.dataset.percentage;
-}
-
-const handleOnMove = e => {
-  if (track.dataset.mouseDownAt === "0") return;
-
-  const mouseDelta = parseFloat(track.dataset.mouseDownAt) - e.clientX,
-    maxDelta = window.innerWidth / 2;
-
-  const percentage = (mouseDelta / maxDelta) * -100,
-    nextPercentageUnconstrained = parseFloat(track.dataset.prevPercentage) + percentage,
-    nextPercentage = Math.max(Math.min(nextPercentageUnconstrained, 0), -75);
-
-  track.dataset.percentage = nextPercentage;
-
-  track.animate({
-    transform: `translate(${nextPercentage}%, 0%)`
-  }, { duration: 1200, fill: "forwards" });
-
-  for (const image of track.getElementsByClassName("image")) {
-    image.animate({
-      objectPosition: `${100 + nextPercentage}% center`
-    }, { duration: 1200, fill: "forwards" });
+  const handleOnUp = () => {
+    track.dataset.mouseDownAt = "0";
+    track.dataset.prevPercentage = track.dataset.percentage;
   }
-  console.log(`percentage = ${percentage}`);
-  console.log(`nextPercentage = ${nextPercentage}`);
+
+  const handleOnMove = e => {
+    if (track.dataset.mouseDownAt === "0") return;
+
+    const mouseDelta = parseFloat(track.dataset.mouseDownAt) - e.clientX,
+      maxDelta = window.innerWidth / 2;
+
+    const percentage = (mouseDelta / maxDelta) * -100,
+      nextPercentageUnconstrained = parseFloat(track.dataset.prevPercentage) + percentage,
+      nextPercentage = Math.max(Math.min(nextPercentageUnconstrained, 0), -75);
+
+    track.dataset.percentage = nextPercentage;
+
+    track.animate({
+      transform: `translate(${nextPercentage}%, 0%)`
+    }, { duration: 1200, fill: "forwards" });
+
+    for (const image of track.getElementsByClassName("image")) {
+      image.animate({
+        objectPosition: `${100 + nextPercentage}% center`
+      }, { duration: 1200, fill: "forwards" });
+    }
+    console.log(`percentage = ${percentage}`);
+    console.log(`nextPercentage = ${nextPercentage}`);
+  }
+
+  window.onmousedown = e => handleOnDown(e);
+
+  window.ontouchstart = e => handleOnDown(e.touches[0]);
+
+  window.onmouseup = e => handleOnUp(e);
+
+  window.ontouchend = e => handleOnUp(e.touches[0]);
+
+  window.onmousemove = e => handleOnMove(e);
+
+  window.ontouchmove = e => handleOnMove(e.touches[0]);
 }
-
-
-// const track = document.getElementById("image-track");
-// const imageTrack = document.getElementById("image-track"); // Dodaj referencję do #image-track
-
-// const handleOnDown = e => {
-//   // Ustal maksymalny przesunięcie w zależności od szerokości slidera
-//   const maxDelta = imageTrack.offsetWidth / 2;
-//   track.dataset.mouseDownAt = e.clientX;
-//   track.dataset.maxDelta = maxDelta; // Przechowaj wartość w dataset
-// };
-
-// const handleOnUp = () => {
-//   track.dataset.mouseDownAt = "0";  
-//   track.dataset.prevPercentage = track.dataset.percentage;
-// }
-
-// const handleOnMove = e => {
-//   if (track.dataset.mouseDownAt === "0") return;
-
-//   const mouseDelta = parseFloat(track.dataset.mouseDownAt) - e.clientX;
-//   const maxDelta = parseFloat(track.dataset.maxDelta); // Pobierz maksymalne przesunięcie z dataset
-
-
-//   const percentage = (mouseDelta / maxDelta) * -100,
-//         nextPercentageUnconstrained = parseFloat(track.dataset.prevPercentage) + percentage,
-//         nextPercentage = Math.max(Math.min(nextPercentageUnconstrained, 0), -100);
-
-//   track.dataset.percentage = nextPercentage;
-
-//   track.animate({
-//     transform: `translate(${nextPercentage}%, -50%)`
-//   }, { duration: 1200, fill: "forwards" });
-
-//   for(const image of track.getElementsByClassName("image")) {
-//     image.animate({
-//       objectPosition: `${100 + nextPercentage}% center`
-//     }, { duration: 1200, fill: "forwards" });
-//   }
-// }
-
-/* -- Had to add extra lines for touch events -- */
-
-window.onmousedown = e => handleOnDown(e);
-
-window.ontouchstart = e => handleOnDown(e.touches[0]);
-
-window.onmouseup = e => handleOnUp(e);
-
-window.ontouchend = e => handleOnUp(e.touches[0]);
-
-window.onmousemove = e => handleOnMove(e);
-
-window.ontouchmove = e => handleOnMove(e.touches[0]);
-
 
 /**
  * NavBar
@@ -119,3 +78,25 @@ function toggleClass(element, className, add) {
     element.classList.remove(className);
   }
 }
+
+/**
+ * order.html
+ */
+
+document.addEventListener("DOMContentLoaded", function () {
+  // Pobierz wszystkie elementy .box
+  const boxes = document.querySelectorAll(".box");
+
+  // Dodaj obsługę kliknięcia dla każdego elementu .box
+  boxes.forEach(function (box) {
+    box.addEventListener("click", function () {
+      // Usuń klasę "active" z wszystkich elementów .box
+      boxes.forEach(function (box) {
+        box.classList.remove("active");
+      });
+
+      // Dodaj klasę "active" tylko do klikniętego elementu .box
+      this.classList.add("active");
+    });
+  });
+});
