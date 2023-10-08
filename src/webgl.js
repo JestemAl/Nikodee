@@ -3,14 +3,14 @@ import gsap from 'gsap'
 import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls.js'
 import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader.js'
 import { DRACOLoader } from 'three/examples/jsm/loaders/DRACOLoader.js'
-import Stats from 'stats.js'
+// import Stats from 'stats.js'
 
 /**
  * Monitoring
  */
-const stats = new Stats()
-stats.showPanel(0)
-document.body.appendChild(stats.dom)
+// const stats = new Stats()
+// stats.showPanel(0)
+// document.body.appendChild(stats.dom)
 
 /**
  * params
@@ -281,7 +281,7 @@ window.addEventListener('mousemove', (event) =>
 
 const tick = () =>
 {
-    stats.begin()
+    // stats.begin()
 
     // Update controlls
     controlsPanel.update()
@@ -295,7 +295,7 @@ const tick = () =>
     // Call tick again on the next frame
     window.requestAnimationFrame(tick)
 
-    stats.end()
+    // stats.end()
 }
 
 tick()
