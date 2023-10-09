@@ -3,6 +3,14 @@ import gsap from 'gsap'
 import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls.js'
 import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader.js'
 import { DRACOLoader } from 'three/examples/jsm/loaders/DRACOLoader.js'
+// import Stats from 'stats.js'
+
+/**
+ * Monitoring
+ */
+// const stats = new Stats()
+// stats.showPanel(0)
+// document.body.appendChild(stats.dom)
 
 /**
  * params
@@ -13,9 +21,13 @@ let canvasHeight;
 
 if (innerHeight > innerWidth || isMobile) {
     canvasHeight = window.innerHeight / 2;
+    console.log('resize');
 } else {
     canvasHeight = window.innerHeight;
+    console.log('resize');
 }
+console.log(innerWidth);
+console.log(innerHeight);
 
 const sizes = {
     width: window.innerWidth,
@@ -142,12 +154,9 @@ window.addEventListener('resize', () =>
 /**
  * Camera
  */
-// Group
-// const cameraGroup = new THREE.Group()
-// scene.add(cameraGroup)
-
 // Base camera
 const cameraPanel = new THREE.PerspectiveCamera(35, sizes.width / sizes.height, 0.1, 100)
+console.log('camera');
 cameraPanel.position.z = 6
 // cameraGroup.add(cameraPanel)
 
@@ -161,11 +170,13 @@ const controlsPanel = new OrbitControls(cameraPanel, canvasPanel)
 controlsPanel.target.set(0, 0, 0)
 controlsPanel.enableDamping = true
 controlsPanel.enableZoom = false
+controlsPanel.enablePan = false
 
 const controlsModule = new OrbitControls(cameraModule, canvasModule)
 controlsModule.target.set(0, 0, 0)
 controlsModule.enableDamping = true
 controlsModule.enableZoom = false
+controlsModule.enablePan = false
 
 /**
  * Renderer
@@ -173,35 +184,30 @@ controlsModule.enableZoom = false
 const rendererPanel = new THREE.WebGLRenderer({
     canvas: canvasPanel,
     alpha: true,
-    antialias: true
+    antialias: true,
+    setPixelRatio: Math.min(window.devicePixelRatio, 2),
+    outputColorSpace: THREE.LinearSRGBColorSpace
 })
-// rendererPanel.useLegacyLights = false
-
-rendererPanel.setSize(sizes.width, sizes.height)
-rendererPanel.setPixelRatio(Math.min(window.devicePixelRatio, 2))
-// rendererPanel.outputColorSpace = THREE.SRGBColorSpace;
-rendererPanel.outputColorSpace = THREE.LinearSRGBColorSpace
-
 const rendererModule = new THREE.WebGLRenderer({
     canvas: canvasModule,
     alpha: true,
-    antialias: true
+    antialias: true,
+    setPixelRatio: Math.min(window.devicePixelRatio, 2),
+    outputColorSpace: THREE.LinearSRGBColorSpace
 })
-rendererModule.useLegacyLights = false
+
 rendererModule.setSize(sizes.width, sizes.height)
-rendererModule.setPixelRatio(Math.min(window.devicePixelRatio, 2))
-// rendererModule.outputColorSpace = THREE.SRGBColorSpace;
-rendererModule.outputColorSpace = THREE.LinearSRGBColorSpace
+if (innerHeight > innerWidth || isMobile) 
+{
+    rendererPanel.setSize(sizes.width, sizes.height / 2)
+    rendererModule.setSize(sizes.width, sizes.height)
+} else {
+    rendererPanel.setSize(sizes.width, sizes.height)
+    rendererPanel.setSize(sizes.width, sizes.height)
+}
 
 
-// gui.add(rendererPanel, 'toneMapping', {
-//     No: THREE.NoToneMapping,
-//     Linear: THREE.LinearToneMapping,
-//     Rainhard: THREE.ReinhardToneMapping,
-//     Cineon: THREE.CineonToneMapping,
-//     ACESFilmic: THREE.ACESFilmicToneMapping
-// })
-// gui.add(rendererPanel, 'toneMappingExposure').min(0).max(10).step(0.001)
+
 
 
 /**
@@ -217,9 +223,9 @@ const options = {
 
 const handleIntersection  = (model, entry) => 
 {
+    const targetModel = model == "webgl-panel" ? panelModel : moduleModel;
     if (entry.isIntersecting) 
     {
-        const targetModel = model == "webgl-panel" ? panelModel : moduleModel;
         gsap.to(targetModel.rotation, {
             duration: 1.5,
             ease: 'power2.inOut',
@@ -275,15 +281,8 @@ window.addEventListener('mousemove', (event) =>
 
 const tick = () =>
 {
-    // const elapsedTime = clock.getElapsedTime()
-    // const deltaTime = elapsedTime - previousTime
-    // previousTime = elapsedTime
+    // stats.begin()
 
-    // const parallaxX = cursor.x * 0.05
-    // const parallaxY = - cursor.y * 0.05
-    // cameraGroup.position.x += (parallaxX - cameraGroup.position.x) * 5 * deltaTime
-    // cameraGroup.position.y += (parallaxY - cameraGroup.position.y) * 5 * deltaTime
-    
     // Update controlls
     controlsPanel.update()
     controlsModule.update()
@@ -295,6 +294,8 @@ const tick = () =>
 
     // Call tick again on the next frame
     window.requestAnimationFrame(tick)
+
+    // stats.end()
 }
 
 tick()

@@ -29,8 +29,6 @@ if (track) {
         objectPosition: `${100 + nextPercentage}% center`
       }, { duration: 1200, fill: "forwards" });
     }
-    console.log(`percentage = ${percentage}`);
-    console.log(`nextPercentage = ${nextPercentage}`);
   }
 
   window.onmousedown = e => handleOnDown(e);

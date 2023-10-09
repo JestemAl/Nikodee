@@ -9,9 +9,9 @@
     <link rel="apple-touch-icon" sizes="180x180" href="./images/logo/apple-touch-icon.png">
     <link rel="icon" type="image/png" sizes="32x32" href='./images/logo/favicon-32x32.png'>
     <link rel="icon" type="image/png" sizes="16x16" href='./images/logo/favicon-16x16.png'>
-  <script type="module" crossorigin src="./assets/main-9011a8d7.js"></script>
-  <link rel="modulepreload" crossorigin href="./assets/script-90ce8677.js">
-  <link rel="stylesheet" href="./assets/script-553aafd3.css">
+  <script type="module" crossorigin src="./assets/main-8d3f6d20.js"></script>
+  <link rel="modulepreload" crossorigin href="./assets/script-eda298dc.js">
+  <link rel="stylesheet" href="./assets/script-5ddc3d12.css">
 </head>
 <body>
     <div style="background: radial-gradient(50% 50% at 50% 50%, #444444, #141414);">
@@ -160,7 +160,7 @@
                 </div>
             </section>
          -->
-            <section class=" mx-auto my-60 lg:my-28">
+            <section class=" mx-auto my-60 lg:my-28 hidden">
                 <div id="image-track" class="box-area flex-col md:flex-row">
                     <div class="box active">
                         <img src="./images/photos/webp/1.webp" alt="img">
@@ -212,7 +212,7 @@
                         <i class="fa-solid fa-tree"></i>
                         <h2>Laboratoria</h2>
                         <p>
-                            Laboratoria fortepianowe.
+                            Laboratorium fortepianowe.
                         </p>
                     </div>
                 </div>
@@ -235,10 +235,12 @@
                     <div class="w-full text-right text-white md:text-xl text-base font-extralight underline underline-offset-8">Specyfikacja</div>
                 </div> -->
             </section>
-            <div id="canvas-container">
-                    <canvas id="webgl-panel"></canvas>
 
-                <section class="flex justify-center items-center">
+            <div id="canvas-container">
+                    <canvas id="webgl-panel" class="hidden md:block"></canvas>
+                    <img src="./images/models/panel.png" alt="panel" class="md:hidden my-32">
+
+                <section class="hidden md:flex justify-center items-center ">
                     <div class="flex justify-center items-center md: mt-2">
                         <div class=" h-[50vh] md:h-screen"> </div>
                     </div>
@@ -263,10 +265,11 @@
                     </div> -->
                 </section>
 
-                <canvas id="webgl-module"></canvas>
+                <canvas id="webgl-module" class="hidden md:block"></canvas>
+                <img src="./images/models/module.png" alt="panel" class="md:hidden my-32">
             </div>
 
-            <section class="flex justify-center items-center ">
+            <section class="hidden md:flex justify-center items-center ">
                 <div class="flex justify-center items-center  mt-2">
                     <div class=" h-[50vh] md:h-screen"> </div>
                 </div>
@@ -283,7 +286,7 @@
             
                 <div class="shadow-inset flex  jusitfy-center items-center  mt-2 bg-black/20 rounded-xl shadow-10xl">
                     <div class="w-full flex justify-center items-center md:max-h-[70vh] my-8 md:mx-20 mx-10 font-extralight">
-                        <img src="images/scheme-filmic-cyckes.png" alt="" class="object-contain md:max-h-[70vh] w-[75vw]">
+                        <img src="images/scheme-filmic-cyckes2.png" alt="" class="object-contain md:max-h-[70vh] w-[75vw]">
                     </div>  
                 </div>
             </section>
@@ -308,14 +311,14 @@
                 </div>
             </section>
         
-            <section id="kontakt" class="flex flex-col-reverse md:flex-row md:justify-between mt-60 mb-30 w-full space-y-48 md:space-y-0">
-                <div class="flex flex-col mx-8 my-60 md:my-0">
-                    <p class="mx-auto mb-12 text-4xl md:text-3xl text-white font-light">Umów Spotkanie</p>
+            <section id="kontakt" class="flex flex-col-reverse lg:flex-row lg:justify-between mt-60 mb-30 w-full space-y-48 lg:space-y-0">
+                <div class="flex flex-col mx-8 my-60 lg:my-0">
+                    <p class="mx-auto mb-12 text-4xl lg:text-3xl text-white font-light">Umów Spotkanie</p>
                     <form action="" class="flex flex-col items-center justify-center font-light text-white space-y-7" method="POST">
-                        <input id="name" class="text-gray-700 bg-brownish shadow-13xl w-full md:w-[30rem] rounded-md px-4 py-2 text-xl placeholder-[#D5D5D5]" type="text" name="name" placeholder="Imie" required />
-                        <input id="email" class="text-gray-700 bg-brownish shadow-13xl w-full md:w-[30rem] rounded-md px-4 py-2 text-xl placeholder-[#D5D5D5]" type="email" name="email" placeholder="E-mail" required />
-                        <input id="phone" class="text-gray-700 bg-brownish shadow-13xl w-full md:w-[30rem] rounded-md px-4 py-2 text-xl placeholder-[#D5D5D5]" type="number" name="phone" placeholder="Telefon" required />
-                        <textarea id="message" class="text-gray-700 bg-brownish shadow-13xl w-full md:w-[30rem] rounded-md px-4 py-2 text-xl placeholder-[#D5D5D5]" type="text" name="text" placeholder="Wiadomość" required ></textarea>
+                        <input id="name" class="text-gray-700 bg-brownish shadow-13xl w-full lg:w-[30rem] rounded-md px-4 py-2 text-xl placeholder-[#D5D5D5]" type="text" name="name" placeholder="Imie" required />
+                        <input id="email" class="text-gray-700 bg-brownish shadow-13xl w-full lg:w-[30rem] rounded-md px-4 py-2 text-xl placeholder-[#D5D5D5]" type="email" name="email" placeholder="E-mail" required />
+                        <input id="phone" class="text-gray-700 bg-brownish shadow-13xl w-full lg:w-[30rem] rounded-md px-4 py-2 text-xl placeholder-[#D5D5D5]" type="number" name="phone" placeholder="Telefon" required />
+                        <textarea id="message" class="text-gray-700 bg-brownish shadow-13xl w-full lg:w-[30rem] rounded-md px-4 py-2 text-xl placeholder-[#D5D5D5]" type="text" name="text" placeholder="Wiadomość" required ></textarea>
                         <div class="m-2 flex w-full items-center space-x-4 font-light">
                             <input class="bg-brownish w-auto placeholder-white" type="checkbox" id="privacy" name="privacy" required />
                             <label class="w-4/5" for="privacy">Przeczytałem Politke Prywatności</label>
@@ -324,7 +327,7 @@
                     <button onclick="sendEmail()" type="submit" class="mx-auto shadow-12xl mt-12 min-w-full max-w-[20rem] rounded-md bg-[#FCB500] py-2 text-xl font-medium text-black">Wyślij</button>
                 </div>
 
-                <div class="flex flex-col justify-center md:justify-between text-white space-y-36">
+                <div class="flex flex-col justify-center lg:justify-between text-white space-y-36">
                     <div class="mx-auto">
                         <p class="mb-12 text-4xl md:text-3xl font-light">Dane kontaktowe</p>
                         <div>
