@@ -155,3 +155,4 @@ function closeNav() {
     menu.classList.toggle("hidden");
   }, 500);
 }
+

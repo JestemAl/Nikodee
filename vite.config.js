@@ -1,4 +1,5 @@
 import { defineConfig } from 'vite';
+import usePHP from 'vite-plugin-php';
 
 const isCodeSandbox = 'SANDBOX_URL' in process.env || 'CODESANDBOX_HOST' in process.env;
 
